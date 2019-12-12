@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SchoolManagementSystem
+{
+    public partial class LogForm : Form
+    {
+        public LogForm()
+        {
+            InitializeComponent();
+        }
+
+        private void Leave_button_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Enter_button_Click(object sender, EventArgs e)
+        {
+            UseWaitCursor = true;
+            if (UserVerifications.VerifyPassword(Username_textBox.Text, Password_textBox.Text))
+            {
+                SchoolManagementSystem smsForm = new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
+                smsForm.Show();
+                Hide();
+
+                Username_textBox.Clear();
+                Password_textBox.Clear();
+            }
+            else
+            {
+                MessageBox.Show(UserVerifications.ObtainTextOfError(Username_textBox.Text));
+                Password_textBox.Clear();
+            }
+
+            UseWaitCursor = false;
+        }
+    }
+}
