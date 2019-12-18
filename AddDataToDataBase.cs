@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using MySqlX.XDevAPI.Common;
 
 namespace SchoolManagementSystem
@@ -25,12 +26,11 @@ namespace SchoolManagementSystem
             bool returnResult = false;
             using (DBCommunication dbcom = new DBCommunication())
             {
-                var result = dbcom.InvokeEvent(true, "INSERT INTO `subjects` (`subject`) VALUES (@subject)",
+                var result = dbcom.InvokeEvent(true, "INSERT INTO `subjects` (`subject_name`) VALUES (@subject)",
                     new Dictionary<string, string> { { "@subject", subject } }, false);
                 if (!result.Any())
                 {
-                    result = dbcom.InvokeEvent(true, "ALTER TABLE `progress` ADD @subject INT;",
-                        new Dictionary<string, string> {{"@subject", subject}}, false);
+                    result = dbcom.InvokeEvent(false, $"ALTER TABLE `progress` ADD COLUMN {subject} INT;", null, false);
                     if (!result.Any())
                         returnResult = true;
                 }
@@ -38,6 +38,50 @@ namespace SchoolManagementSystem
             }
 
             return returnResult;
+        }
+
+        public static bool AddPupil(string name, string surname, string email, string group, string entranceYear)
+        {
+            using (DBCommunication dbcom = new DBCommunication())
+            {
+                var result = dbcom.InvokeEvent(true,
+                    "INSERT INTO `pupils` (`name`, `surname`, `email`, `groupID`, `entrance_year`) VALUES" +
+                    "(@name, @surname, @email, @group, @entrance_year);",
+                    new Dictionary<string, string>
+                    {
+                        {"@name", name}, {"@surname", surname}, {"@email", email}, {"@group", group},
+                        {"@entrance_year", entranceYear}
+                    }, false);
+
+                if (!result.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool AddTeacher(string name, string surname, string subject, string cabinet)
+        {
+            using (DBCommunication dbcom = new DBCommunication())
+            {
+                var result = dbcom.InvokeEvent(true,
+                    "INSERT INTO `teachers` (`name`, `surname`, `subjectID`, `cabinetID`) VALUES" +
+                    "(@name, @surname, @subject, @cabinet);",
+                    new Dictionary<string, string>
+                    {
+                        {"@name", name}, {"@surname", surname}, {"@subject", subject},
+                        {"@cabinet", cabinet}
+                    }, false);
+
+                if (!result.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

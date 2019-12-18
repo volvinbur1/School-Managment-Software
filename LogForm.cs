@@ -29,7 +29,11 @@ namespace SchoolManagementSystem
             {
                 SchoolManagementSystem smsForm = new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
                 smsForm.Show();
+
+//                var form = new AddForm(AddForm.AddOperationMode.AddTeacher);
+//                form.Show();
                 Hide();
+
 
                 Username_textBox.Clear();
                 Password_textBox.Clear();

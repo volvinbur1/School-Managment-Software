@@ -65,9 +65,8 @@ namespace SchoolManagementSystem
 
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            rowList.Add(reader[i].ToString());
+                            rowList.Add(reader.GetString(i));
                         }
-
                         returnList.Add(rowList);
                     }
 
@@ -103,7 +102,7 @@ namespace SchoolManagementSystem
 
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            rowList.Add(reader[i].ToString());
+                            rowList.Add(reader.GetString(i));
                         }
 
                         returnList.Add(rowList);
@@ -115,6 +114,32 @@ namespace SchoolManagementSystem
                     command.ExecuteNonQuery();
 
                 return returnList;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return null;
+            }
+        }
+
+        public List<string> GetTableColumnsNames(string table)
+        {
+            try
+            {
+                List<string> columnNames = new List<string>();
+
+                string query = $"SELECT * FROM `{table}` WHERE `id` = 1;";
+                MySqlCommand command = new MySqlCommand(query, _connection);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                    for (int i = 0; i < reader.FieldCount; i++)
+                        columnNames.Add(reader.GetName(i));
+
+                reader.Close();
+
+                return columnNames;
             }
             catch (Exception e)
             {

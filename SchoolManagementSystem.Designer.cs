@@ -35,7 +35,6 @@
             this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePupleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formTableOfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,12 +45,16 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.Welcome_label = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.SelectTable_comboBox = new System.Windows.Forms.ComboBox();
+            this.TablePreview_dataGridView = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TablePreview_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // addToolStripMenuItem
@@ -68,32 +71,35 @@
             // addPupleToolStripMenuItem
             // 
             this.addPupleToolStripMenuItem.Name = "addPupleToolStripMenuItem";
-            this.addPupleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addPupleToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.addPupleToolStripMenuItem.Text = "Add pupil";
+            this.addPupleToolStripMenuItem.Click += new System.EventHandler(this.addPupilToolStripMenuItem_Click);
             // 
             // addTeacherToolStripMenuItem
             // 
             this.addTeacherToolStripMenuItem.Name = "addTeacherToolStripMenuItem";
-            this.addTeacherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addTeacherToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.addTeacherToolStripMenuItem.Text = "Add teacher";
+            this.addTeacherToolStripMenuItem.Click += new System.EventHandler(this.addTeacherToolStripMenuItem_Click);
             // 
             // addCabinetToolStripMenuItem
             // 
             this.addCabinetToolStripMenuItem.Name = "addCabinetToolStripMenuItem";
-            this.addCabinetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addCabinetToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.addCabinetToolStripMenuItem.Text = "Add cabinet";
+            this.addCabinetToolStripMenuItem.Click += new System.EventHandler(this.addCabinetToolStripMenuItem_Click);
             // 
             // addToolStripMenuItem1
             // 
             this.addToolStripMenuItem1.Name = "addToolStripMenuItem1";
-            this.addToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
             this.addToolStripMenuItem1.Text = "Add subject";
+            this.addToolStripMenuItem1.Click += new System.EventHandler(this.addToolStripMenuItem1_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deletePupleToolStripMenuItem,
-            this.deleteTeacherToolStripMenuItem});
+            this.deletePupleToolStripMenuItem});
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.deleteToolStripMenuItem.Text = "Delete";
@@ -101,14 +107,8 @@
             // deletePupleToolStripMenuItem
             // 
             this.deletePupleToolStripMenuItem.Name = "deletePupleToolStripMenuItem";
-            this.deletePupleToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.deletePupleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deletePupleToolStripMenuItem.Text = "Delete pupil";
-            // 
-            // deleteTeacherToolStripMenuItem
-            // 
-            this.deleteTeacherToolStripMenuItem.Name = "deleteTeacherToolStripMenuItem";
-            this.deleteTeacherToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.deleteTeacherToolStripMenuItem.Text = "Delete teacher";
             // 
             // processToolStripMenuItem
             // 
@@ -195,8 +195,20 @@
             this.tabPage1.Text = "Home";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // Welcome_label
+            // 
+            this.Welcome_label.AutoSize = true;
+            this.Welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Welcome_label.Location = new System.Drawing.Point(37, 100);
+            this.Welcome_label.Name = "Welcome_label";
+            this.Welcome_label.Size = new System.Drawing.Size(193, 42);
+            this.Welcome_label.TabIndex = 2;
+            this.Welcome_label.Text = "Welcome, ";
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.SelectTable_comboBox);
+            this.tabPage2.Controls.Add(this.TablePreview_dataGridView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -204,6 +216,24 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Review";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // SelectTable_comboBox
+            // 
+            this.SelectTable_comboBox.FormattingEnabled = true;
+            this.SelectTable_comboBox.Location = new System.Drawing.Point(6, 6);
+            this.SelectTable_comboBox.Name = "SelectTable_comboBox";
+            this.SelectTable_comboBox.Size = new System.Drawing.Size(216, 21);
+            this.SelectTable_comboBox.TabIndex = 1;
+            this.SelectTable_comboBox.Text = "Select table";
+            this.SelectTable_comboBox.SelectedIndexChanged += new System.EventHandler(this.SelectTable_comboBox_SelectedIndexChanged);
+            // 
+            // TablePreview_dataGridView
+            // 
+            this.TablePreview_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablePreview_dataGridView.Location = new System.Drawing.Point(3, 33);
+            this.TablePreview_dataGridView.Name = "TablePreview_dataGridView";
+            this.TablePreview_dataGridView.Size = new System.Drawing.Size(628, 323);
+            this.TablePreview_dataGridView.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -214,16 +244,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Find";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // Welcome_label
-            // 
-            this.Welcome_label.AutoSize = true;
-            this.Welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Welcome_label.Location = new System.Drawing.Point(37, 100);
-            this.Welcome_label.Name = "Welcome_label";
-            this.Welcome_label.Size = new System.Drawing.Size(193, 42);
-            this.Welcome_label.TabIndex = 2;
-            this.Welcome_label.Text = "Welcome, ";
             // 
             // SchoolManagementSystem
             // 
@@ -242,6 +262,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TablePreview_dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +278,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePupleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteTeacherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem processToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formTableOfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProgressToolStripMenuItem;
@@ -270,5 +291,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label Welcome_label;
+        private System.Windows.Forms.ComboBox SelectTable_comboBox;
+        private System.Windows.Forms.DataGridView TablePreview_dataGridView;
     }
 }
