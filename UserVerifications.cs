@@ -6,12 +6,15 @@ namespace SchoolManagementSystem
 {
     public class UserVerifications
     {
+        private static bool _admin = false;
+        public static bool Admin { get=>_admin; }
+
         public static bool VerifyPassword(string username, string password)
         {
             List<List<string>> result;
             using (DBCommunication dbcom = new DBCommunication())
             {
-                result = dbcom.InvokeEvent(true, "SELECT `password` FROM `admins` WHERE `username` = @username;",
+                result = dbcom.InvokeEvent(true, "SELECT `password`,`admin` FROM `users` WHERE `username` = @username;",
                     new Dictionary<string, string>
                     {
                         {"@username", username}
@@ -20,6 +23,8 @@ namespace SchoolManagementSystem
 
             if (result != null && result.Count != 0)
             {
+                _admin = bool.Parse(result[0][1]);
+
                 if (result[0][0] == password)
                     return true;
             }
@@ -46,7 +51,7 @@ namespace SchoolManagementSystem
             using (DBCommunication dbcom = new DBCommunication())
             {
                 result = dbcom.InvokeEvent(true,
-                    "SELECT `name`, `surname` FROM `admins` WHERE `username` = @username;",
+                    "SELECT `name`, `surname` FROM `users` WHERE `username` = @username;",
                     new Dictionary<string, string>
                     {
                         {"@username", username}

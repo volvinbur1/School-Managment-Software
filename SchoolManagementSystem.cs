@@ -50,8 +50,42 @@ namespace SchoolManagementSystem
             SelectTable_comboBox.Text = @"Choose table to display";
         }
 
+        private void PrintTableWithJoinStatement()
+        {
+            var subjects = SelectDataFromDataBase.SelectSubjectList();
+            string qColumn = "";
+            foreach (var pair in subjects)
+            {
+                qColumn += $", `progress`.`{pair.Value}`";
+            }
+
+            TablePreview_dataGridView.DataSource = SelectDataFromDataBase.SelectAllFromTable(
+                $"SELECT `progress`.`id`, `pupils`.`name`, `pupils`.`surname`{qColumn} FROM `progress` INNER JOIN `pupils` ON `progress`.`pupilID` = `pupils`.`id`;",
+                FormColumnsList(subjects));
+
+            TablePreview_dataGridView.AutoResizeColumns();
+            TablePreview_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            TablePreview_dataGridView.Refresh();
+        }
+
+        private List<string> FormColumnsList(Dictionary<string, string> subjects)
+        {
+            List<string> list = new List<string>
+            {
+                "id",
+                "name",
+                "surname"
+            };
+            foreach (var pair in subjects)
+            {
+                list.Add(pair.Value);
+            }
+            return list;
+        }
+
         private void addPupilToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             AddForm addForm = new AddForm(AddForm.AddOperationMode.AddPupil)
             {
                 StartPosition = FormStartPosition.CenterScreen,
@@ -60,10 +94,12 @@ namespace SchoolManagementSystem
                 FormBorderStyle = FormBorderStyle.FixedDialog
             };
             addForm.Show();
+            Cursor.Current = Cursors.Default;
         }
 
         private void addTeacherToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             AddForm addForm = new AddForm(AddForm.AddOperationMode.AddTeacher)
             {
                 StartPosition = FormStartPosition.CenterScreen,
@@ -72,10 +108,12 @@ namespace SchoolManagementSystem
                 FormBorderStyle = FormBorderStyle.FixedDialog
             };
             addForm.Show();
+            Cursor.Current = Cursors.Default;
         }
 
         private void addCabinetToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             AddForm addForm = new AddForm(AddForm.AddOperationMode.AddCabinet)
             {
                 StartPosition = FormStartPosition.CenterScreen,
@@ -84,10 +122,12 @@ namespace SchoolManagementSystem
                 FormBorderStyle = FormBorderStyle.FixedDialog
             };
             addForm.Show();
+            Cursor.Current = Cursors.Default;
         }
 
         private void addToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             AddForm addForm = new AddForm(AddForm.AddOperationMode.AddSubject)
             {
                 StartPosition = FormStartPosition.CenterScreen,
@@ -96,6 +136,7 @@ namespace SchoolManagementSystem
                 FormBorderStyle = FormBorderStyle.FixedDialog
             };
             addForm.Show();
+            Cursor.Current = Cursors.Default;
         }
 
 
@@ -103,12 +144,54 @@ namespace SchoolManagementSystem
         {
             if (SelectTable_comboBox.SelectedIndex > -1)
             {
-                TablePreview_dataGridView.DataSource =
-                    SelectDataFromDataBase.SelectAllFromTable(SelectTable_comboBox.SelectedValue.ToString());
-                TablePreview_dataGridView.AutoResizeColumns();
-                TablePreview_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                TablePreview_dataGridView.Refresh();
+                if (SelectTable_comboBox.SelectedValue.ToString() == "progress")
+                    PrintTableWithJoinStatement();
+                else
+                {
+                    TablePreview_dataGridView.DataSource =
+                        SelectDataFromDataBase.SelectAllFromTable(SelectTable_comboBox.SelectedValue.ToString());
+                    TablePreview_dataGridView.AutoResizeColumns();
+                    TablePreview_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    TablePreview_dataGridView.Refresh();
+                }
+            }
+        }
 
+        private void deletePupleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            DeleteForm form = new DeleteForm
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void viewProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            ProgressFrom form = new ProgressFrom
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.Show();
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void exportDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (BackUpRestore backup = new BackUpRestore())
+            {
+                backup.CreateBackup();
+            }
+        }
+
+        private void importDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (BackUpRestore restore = new BackUpRestore())
+            {
+                restore.RestoreBackup();
             }
         }
     }

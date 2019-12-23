@@ -52,6 +52,16 @@ namespace SchoolManagementSystem
                         {"@name", name}, {"@surname", surname}, {"@email", email}, {"@group", group},
                         {"@entrance_year", entranceYear}
                     }, false);
+                var id = dbcom.InvokeEvent(true,
+                    "SELECT `id` FROM `pupils` WHERE `name` = @name AND `surname` = @surname;", new Dictionary<string,
+                        string> {{"@name", name}, {"@surname", surname}}, true);
+                dbcom.InvokeEvent(true, "INSERT INTO `progress` (`pupilId`) VALUES (@pupilId);",
+                    new Dictionary<string, string> {{"@pupilId", id[0][0]}}, false);
+
+                var amount = dbcom.InvokeEvent(false, $"SELECT `amount_of_pupils` FROM `groups` WHERE `id` = {group};", null, true);
+                dbcom.InvokeEvent(false,
+                    $"UPDATE `groups` SET `amount_of_pupils`={amount[0][0]}+1 WHERE `id`={group};", null,
+                    false);
 
                 if (!result.Any())
                 {

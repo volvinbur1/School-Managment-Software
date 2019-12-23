@@ -63,7 +63,7 @@ namespace SchoolManagementSystem
                 columnNames = db.GetTableColumnsNames(table);
             }
 
-            if (result.Any())
+            if (result != null && result.Any())
             {
                 DataTable dTable = new DataTable();
 
@@ -85,6 +85,92 @@ namespace SchoolManagementSystem
                     for (int i = 0; i < rowList.Count; i++)
                     {
                         row[columnNames[i]] = rowList[i];
+                    }
+
+                    dTable.Rows.Add(row);
+                }
+
+                return dTable;
+            }
+
+            return null;
+        }
+
+        public static DataTable SelectAllFromTable(string table, string query)
+        {
+            List<List<string>> result;
+            List<string> columnNames;
+
+            using (DBCommunication db = new DBCommunication())
+            {
+                result = db.InvokeEvent(false, query, null, true);
+                columnNames = db.GetTableColumnsNames(table);
+            }
+
+            if (result != null && result.Any())
+            {
+                DataTable dTable = new DataTable();
+
+                foreach (var t in columnNames)
+                {
+                    DataColumn column = new DataColumn
+                    {
+                        DataType = typeof(string),
+                        ColumnName = t
+                    };
+
+                    dTable.Columns.Add(column);
+                }
+
+                foreach (var rowList in result)
+                {
+                    DataRow row = dTable.NewRow();
+
+                    for (int i = 0; i < rowList.Count; i++)
+                    {
+                        row[columnNames[i]] = rowList[i];
+                    }
+
+                    dTable.Rows.Add(row);
+                }
+
+                return dTable;
+            }
+
+            return null;
+        }
+
+        public static DataTable SelectAllFromTable(string query, List<string> columns)
+        {
+            List<List<string>> result;
+
+            using (DBCommunication db = new DBCommunication())
+            {
+                result = db.InvokeEvent(false, query, null, true);
+            }
+
+            if (result != null && result.Any())
+            {
+                DataTable dTable = new DataTable();
+
+                foreach (var t in columns)
+                {
+                    DataColumn column = new DataColumn
+                    {
+                        DataType = typeof(string),
+                        ColumnName = t
+                    };
+
+                    dTable.Columns.Add(column);
+                }
+
+                foreach (var rowList in result)
+                {
+                    DataRow row = dTable.NewRow();
+
+                    for (int i = 0; i < rowList.Count; i++)
+                    {
+                        row[columns[i]] = rowList[i];
                     }
 
                     dTable.Rows.Add(row);

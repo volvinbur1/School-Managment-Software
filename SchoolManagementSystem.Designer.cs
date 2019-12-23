@@ -49,7 +49,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SelectTable_comboBox = new System.Windows.Forms.ComboBox();
             this.TablePreview_dataGridView = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -107,8 +106,9 @@
             // deletePupleToolStripMenuItem
             // 
             this.deletePupleToolStripMenuItem.Name = "deletePupleToolStripMenuItem";
-            this.deletePupleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletePupleToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.deletePupleToolStripMenuItem.Text = "Delete pupil";
+            this.deletePupleToolStripMenuItem.Click += new System.EventHandler(this.deletePupleToolStripMenuItem_Click);
             // 
             // processToolStripMenuItem
             // 
@@ -119,17 +119,12 @@
             this.processToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.processToolStripMenuItem.Text = "Proccesses";
             // 
-            // formTableOfToolStripMenuItem
-            // 
-            this.formTableOfToolStripMenuItem.Name = "formTableOfToolStripMenuItem";
-            this.formTableOfToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.formTableOfToolStripMenuItem.Text = "Form table of progress";
-            // 
             // viewProgressToolStripMenuItem
             // 
             this.viewProgressToolStripMenuItem.Name = "viewProgressToolStripMenuItem";
             this.viewProgressToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.viewProgressToolStripMenuItem.Text = "View progress ";
+            this.viewProgressToolStripMenuItem.Click += new System.EventHandler(this.viewProgressToolStripMenuItem_Click);
             // 
             // dataBaseToolStripMenuItem
             // 
@@ -145,12 +140,14 @@
             this.exportDatabaseToolStripMenuItem.Name = "exportDatabaseToolStripMenuItem";
             this.exportDatabaseToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exportDatabaseToolStripMenuItem.Text = "Export  database";
+            this.exportDatabaseToolStripMenuItem.Click += new System.EventHandler(this.exportDatabaseToolStripMenuItem_Click);
             // 
             // importDatabaseToolStripMenuItem
             // 
             this.importDatabaseToolStripMenuItem.Name = "importDatabaseToolStripMenuItem";
             this.importDatabaseToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.importDatabaseToolStripMenuItem.Text = "Import database";
+            this.importDatabaseToolStripMenuItem.Click += new System.EventHandler(this.importDatabaseToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -177,7 +174,6 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -235,16 +231,6 @@
             this.TablePreview_dataGridView.Size = new System.Drawing.Size(628, 323);
             this.TablePreview_dataGridView.TabIndex = 0;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(634, 359);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Find";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // SchoolManagementSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,7 +275,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label Welcome_label;
         private System.Windows.Forms.ComboBox SelectTable_comboBox;
         private System.Windows.Forms.DataGridView TablePreview_dataGridView;

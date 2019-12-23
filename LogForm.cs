@@ -24,19 +24,27 @@ namespace SchoolManagementSystem
 
         private void Enter_button_Click(object sender, EventArgs e)
         {
-            UseWaitCursor = true;
+            Cursor.Current = Cursors.WaitCursor;
             if (UserVerifications.VerifyPassword(Username_textBox.Text, Password_textBox.Text))
             {
-                SchoolManagementSystem smsForm = new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
-                smsForm.Show();
+                if (UserVerifications.Admin)
+                {
+                    SchoolManagementSystem smsForm =
+                        new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
+                    smsForm.Show();
 
 //                var form = new AddForm(AddForm.AddOperationMode.AddTeacher);
 //                form.Show();
-                Hide();
+                    Hide();
 
 
-                Username_textBox.Clear();
-                Password_textBox.Clear();
+                    Username_textBox.Clear();
+                    Password_textBox.Clear();
+                }
+                else
+                {
+                    
+                }
             }
             else
             {
@@ -44,7 +52,7 @@ namespace SchoolManagementSystem
                 Password_textBox.Clear();
             }
 
-            UseWaitCursor = false;
+            Cursor.Current = Cursors.Default;
         }
     }
 }

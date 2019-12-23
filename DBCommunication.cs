@@ -15,7 +15,7 @@ namespace SchoolManagementSystem
         private readonly string _server = "localhost";
         private readonly string _database = "school_management_system";
 
-        private readonly MySqlConnection _connection;
+        protected readonly MySqlConnection _connection;
 
         private event ExecuteQueryWithoutClassInstance ExecuteEvent;
 
@@ -128,14 +128,18 @@ namespace SchoolManagementSystem
             {
                 List<string> columnNames = new List<string>();
 
-                string query = $"SELECT * FROM `{table}` WHERE `id` = 1;";
+                string query = $"SELECT * FROM `{table}` WHERE 1 = 1;";
                 MySqlCommand command = new MySqlCommand(query, _connection);
 
                 MySqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
+                bool fl = true;
+                while (reader.Read() && fl)
+                {
                     for (int i = 0; i < reader.FieldCount; i++)
                         columnNames.Add(reader.GetName(i));
+                    fl = false;
+                }
 
                 reader.Close();
 
