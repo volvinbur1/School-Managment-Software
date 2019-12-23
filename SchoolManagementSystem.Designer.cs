@@ -36,7 +36,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePupleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.processToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formTableOfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +48,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.SelectTable_comboBox = new System.Windows.Forms.ComboBox();
             this.TablePreview_dataGridView = new System.Windows.Forms.DataGridView();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -113,7 +113,6 @@
             // processToolStripMenuItem
             // 
             this.processToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formTableOfToolStripMenuItem,
             this.viewProgressToolStripMenuItem});
             this.processToolStripMenuItem.Name = "processToolStripMenuItem";
             this.processToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
@@ -122,7 +121,7 @@
             // viewProgressToolStripMenuItem
             // 
             this.viewProgressToolStripMenuItem.Name = "viewProgressToolStripMenuItem";
-            this.viewProgressToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.viewProgressToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewProgressToolStripMenuItem.Text = "View progress ";
             this.viewProgressToolStripMenuItem.Click += new System.EventHandler(this.viewProgressToolStripMenuItem_Click);
             // 
@@ -163,6 +162,7 @@
             this.deleteToolStripMenuItem,
             this.processToolStripMenuItem,
             this.dataBaseToolStripMenuItem,
+            this.logoutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -225,11 +225,21 @@
             // 
             // TablePreview_dataGridView
             // 
+            this.TablePreview_dataGridView.AllowUserToAddRows = false;
+            this.TablePreview_dataGridView.AllowUserToDeleteRows = false;
             this.TablePreview_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablePreview_dataGridView.Location = new System.Drawing.Point(3, 33);
             this.TablePreview_dataGridView.Name = "TablePreview_dataGridView";
+            this.TablePreview_dataGridView.ReadOnly = true;
             this.TablePreview_dataGridView.Size = new System.Drawing.Size(628, 323);
             this.TablePreview_dataGridView.TabIndex = 0;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // SchoolManagementSystem
             // 
@@ -265,7 +275,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePupleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem processToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formTableOfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewProgressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportDatabaseToolStripMenuItem;
@@ -278,5 +287,6 @@
         private System.Windows.Forms.Label Welcome_label;
         private System.Windows.Forms.ComboBox SelectTable_comboBox;
         private System.Windows.Forms.DataGridView TablePreview_dataGridView;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

@@ -194,5 +194,11 @@ namespace SchoolManagementSystem
                 restore.RestoreBackup();
             }
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _logForm.Show();
+            Hide();
+        }
     }
 }

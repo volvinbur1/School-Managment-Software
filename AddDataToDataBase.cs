@@ -30,7 +30,7 @@ namespace SchoolManagementSystem
                     new Dictionary<string, string> { { "@subject", subject } }, false);
                 if (!result.Any())
                 {
-                    result = dbcom.InvokeEvent(false, $"ALTER TABLE `progress` ADD COLUMN {subject} INT;", null, false);
+                    result = dbcom.InvokeEvent(false, $"ALTER TABLE `progress` ADD COLUMN {subject} INT DEFAULT 0;", null, false);
                     if (!result.Any())
                         returnResult = true;
                 }

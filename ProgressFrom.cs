@@ -12,19 +12,36 @@ namespace SchoolManagementSystem
 {
     public partial class ProgressFrom : Form
     {
+        private readonly bool _admin = true;
+        private readonly LogForm _logForm;
         public ProgressFrom()
         {
             InitializeComponent();
+        }
+
+        public ProgressFrom(bool admin, LogForm obj)
+        {
+            InitializeComponent();
+            _admin = admin;
+            _logForm = obj;
         }
 
         private readonly ObtainProgress _progress = new ObtainProgress();
 
         private void ProgressFrom_Load(object sender, EventArgs e)
         {
+            if (!_admin)
+            {
+                Progress_dataGridView.ReadOnly = true;
+            }
+
+            Progress_dataGridView.AllowUserToAddRows = false;
+            Progress_dataGridView.AllowUserToDeleteRows = false;
+
             PrepareSubjectCombobox();
             PrintTableToDataGridView();
             AverageListBox();
-          //  TeacherWithLowestSuccess();
+            TeacherWithLowestSuccess();
         }
 
         private void AverageListBox()
@@ -34,7 +51,7 @@ namespace SchoolManagementSystem
 
             foreach (var item in dictionary)
             {
-                list.Add(item.Key + "  -  " + item.Value);
+                list.Add(item.Key + "  -  " + $"{item.Value:0.00}");
             }
 
             AvarageValues_listBox.DataSource = list;
@@ -134,7 +151,7 @@ namespace SchoolManagementSystem
                             Progress_dataGridView.Columns[e.ColumnIndex].Name);
 
                         AverageListBox();
-                        // TeacherWithLowestSuccess();
+                        TeacherWithLowestSuccess();
                     }
                     else
                     {
@@ -148,6 +165,14 @@ namespace SchoolManagementSystem
             }
 
             PrintTableToDataGridView();
+        }
+
+        private void ProgressFrom_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_admin)
+            {
+                _logForm.Show();
+            }
         }
     }
 }

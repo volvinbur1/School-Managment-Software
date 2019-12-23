@@ -34,14 +34,14 @@ namespace SchoolManagementSystem
 
         public static string ObtainTextOfError(string username)
         {
-            List<List<string>> result;
+            List<List<string>> result = new List<List<string>>();
             using (DBCommunication dbcom = new DBCommunication())
             {
                 result = dbcom.InvokeEvent(false, "SELECT `username` FROM `admins`;", null, true);
             }
 
-            if (result.Count == 0)
-                return "No such user";
+            if (result == null)
+                return "Username and password doesn`t match.";
             return "Password does`t match";
         }
 

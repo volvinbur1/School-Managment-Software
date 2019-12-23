@@ -25,31 +25,35 @@ namespace SchoolManagementSystem
         private void Enter_button_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            if (UserVerifications.VerifyPassword(Username_textBox.Text, Password_textBox.Text))
+            if (Username_textBox.Text != "" && Password_textBox.Text != "")
             {
-                if (UserVerifications.Admin)
+                if (UserVerifications.VerifyPassword(Username_textBox.Text, Password_textBox.Text))
                 {
-                    SchoolManagementSystem smsForm =
-                        new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
-                    smsForm.Show();
+                    if (UserVerifications.Admin)
+                    {
+                        SchoolManagementSystem smsForm =
+                            new SchoolManagementSystem(this, UserVerifications.GetUserName(Username_textBox.Text));
+                        smsForm.Show();
 
 //                var form = new AddForm(AddForm.AddOperationMode.AddTeacher);
 //                form.Show();
-                    Hide();
+                    }
+                    else
+                    {
+                        ProgressFrom progress = new ProgressFrom(false, this);
+                        progress.Show();
+                    }
 
+                    Hide();
 
                     Username_textBox.Clear();
                     Password_textBox.Clear();
                 }
                 else
                 {
-                    
+                    MessageBox.Show(UserVerifications.ObtainTextOfError(Username_textBox.Text));
+                    Password_textBox.Clear();
                 }
-            }
-            else
-            {
-                MessageBox.Show(UserVerifications.ObtainTextOfError(Username_textBox.Text));
-                Password_textBox.Clear();
             }
 
             Cursor.Current = Cursors.Default;

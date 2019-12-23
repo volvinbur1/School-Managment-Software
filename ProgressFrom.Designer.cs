@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.TeacherName_textBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Progress_dataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.Unprecedent_groupBox.SuspendLayout();
@@ -80,9 +81,9 @@
             // SubjectProgress_textBox
             // 
             this.SubjectProgress_textBox.Enabled = false;
-            this.SubjectProgress_textBox.Location = new System.Drawing.Point(200, 19);
+            this.SubjectProgress_textBox.Location = new System.Drawing.Point(199, 19);
             this.SubjectProgress_textBox.Name = "SubjectProgress_textBox";
-            this.SubjectProgress_textBox.Size = new System.Drawing.Size(32, 20);
+            this.SubjectProgress_textBox.Size = new System.Drawing.Size(44, 20);
             this.SubjectProgress_textBox.TabIndex = 3;
             // 
             // groupBox1
@@ -92,7 +93,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 55);
+            this.groupBox1.Size = new System.Drawing.Size(255, 55);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Progress of selected subject";
@@ -102,9 +103,9 @@
             this.AvarageValues_listBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AvarageValues_listBox.FormattingEnabled = true;
             this.AvarageValues_listBox.ItemHeight = 20;
-            this.AvarageValues_listBox.Location = new System.Drawing.Point(721, 63);
+            this.AvarageValues_listBox.Location = new System.Drawing.Point(721, 103);
             this.AvarageValues_listBox.Name = "AvarageValues_listBox";
-            this.AvarageValues_listBox.Size = new System.Drawing.Size(194, 384);
+            this.AvarageValues_listBox.Size = new System.Drawing.Size(194, 344);
             this.AvarageValues_listBox.TabIndex = 5;
             // 
             // Unprecedent_groupBox
@@ -124,7 +125,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(198, 32);
+            this.label4.Location = new System.Drawing.Point(191, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(22, 13);
             this.label4.TabIndex = 4;
@@ -133,14 +134,14 @@
             // Amount_textBox
             // 
             this.Amount_textBox.Enabled = false;
-            this.Amount_textBox.Location = new System.Drawing.Point(226, 29);
+            this.Amount_textBox.Location = new System.Drawing.Point(219, 29);
             this.Amount_textBox.Name = "Amount_textBox";
-            this.Amount_textBox.Size = new System.Drawing.Size(39, 20);
+            this.Amount_textBox.Size = new System.Drawing.Size(46, 20);
             this.Amount_textBox.TabIndex = 3;
             // 
             // IdealValue_textBox
             // 
-            this.IdealValue_textBox.Location = new System.Drawing.Point(153, 29);
+            this.IdealValue_textBox.Location = new System.Drawing.Point(142, 29);
             this.IdealValue_textBox.Name = "IdealValue_textBox";
             this.IdealValue_textBox.Size = new System.Drawing.Size(39, 20);
             this.IdealValue_textBox.TabIndex = 2;
@@ -182,11 +183,22 @@
             this.TeacherName_textBox.Size = new System.Drawing.Size(209, 20);
             this.TeacherName_textBox.TabIndex = 0;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(726, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(186, 16);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Average mark at each subject";
+            // 
             // ProgressFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(927, 452);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Unprecedent_groupBox);
             this.Controls.Add(this.AvarageValues_listBox);
@@ -194,6 +206,7 @@
             this.Controls.Add(this.Progress_dataGridView);
             this.Name = "ProgressFrom";
             this.Text = "Progress";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProgressFrom_FormClosing);
             this.Load += new System.EventHandler(this.ProgressFrom_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Progress_dataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -203,6 +216,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -222,5 +236,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox TeacherName_textBox;
+        private System.Windows.Forms.Label label5;
     }
 }
